@@ -1,0 +1,15 @@
+extends common/layout 
+block layout-content
+    div.content
+        h1.page-title Add menu link
+        form(method="post", action="/admin/menu/add/submit")
+            div
+                label(for="wgt") Weight:
+                input(type="number", min="0", id="wgt", name="weight")
+            div
+                label(for="href") URI:
+                input(type="text", id="href", name="path", placeholder="e.g. /my-page")
+            div
+                label(for="link-name") Name:
+                input(type="text", id="link-name", name="name", placeholder="e.g.About")
+            button(type="submit", value="add-link") Add link

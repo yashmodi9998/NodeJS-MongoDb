@@ -1,0 +1,17 @@
+extends common/layout 
+block layout-content
+    div.content
+        h1.page-title Update menu link
+        form(action='/admin/menu/update/submit', method='post')
+            input(type="hidden", name="linkId", value=editLink._id)
+            div
+                label(for="wgt") Weight:
+                input(type="number", min="0", id="wgt", name="weight", value =editLink.weight)
+            div
+                label(for="href") URI:
+                input(type="text", id="href", name="path",value=editLink.path)
+            div
+                label(for="link-name") Name:
+                input(type="text", id="link-name", name="name",value=editLink.name)
+            button(type="submit", value="update-link") Update link
+        
