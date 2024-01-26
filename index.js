@@ -24,7 +24,6 @@ app.use(express.json());
 
 //SET UP SOME PAGE ROUTES
 app.get("/", async (request, response) => {
-  //response.status(200).send("Test page again"); //this is just to test
   let links = await getLinks();
   console.log(links);
   response.render("index", { title: "Home", menu: links });
