@@ -2,7 +2,7 @@ extends common/layout
 block layout-content
     div.content
         h1.page-title Add menu link
-        form(method="post", action="/admin/menu/add/submit")
+        form(method="post", action="/admin/menu/edit/submit")
             div
                 label(for="wgt") Weight:
                 input(type="number", min="0", id="wgt", name="weight")

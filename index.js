@@ -35,12 +35,12 @@ app.get("/about", async (request, response) => {
   response.render("about", { title: "About", menu: links });
 });
 
-//SET UP menu link for admin
+//SET UP menu link for admin TO ADD
 app.get("/admin/menu/add", async (request, response) => {
   let links = await getLinks();
   response.render("menu-add", { title: "Add menu link", menu: links });
 });
-
+//SET UP PAGE FOR ADMIN TO MANAGE LINKS
 app.get("/admin/menu", async (request, response) => {
   let links = await getLinks();
   response.render("menu-admin", { title: "Menu links admin", menu: links });
@@ -56,11 +56,11 @@ app.get("/admin/menu/delete", async (request, response) => {
 
 //UPDATE FUNCTION FOR ADMIN
 
-app.get("/admin/menu/update", async (request, response) => {
+app.get("/admin/menu/edit", async (request, response) => {
   if (request.query.linkId) {
     let linkToEdit = await getSingleLink(request.query.linkId);
     let links = await getLinks();
-    response.render("menu-update", {
+    response.render("menu-edit", {
       title: "Edit menu link",
       menu: links,
       editLink: linkToEdit,
@@ -81,7 +81,7 @@ app.post("/admin/menu/add/submit", async (request, response) => {
 });
 
 //ADMIN update form process
-app.post("/admin/menu/update/submit", async (request, response) => {
+app.post("/admin/menu/edit/submit", async (request, response) => {
   try {
     let idFilter = { _id: new ObjectId(request.body.linkId) };
     let link = {
@@ -145,7 +145,7 @@ async function deleteLink(id) {
     console.log("delete successful");
   }
 }
-// Function to get a link
+// Function to get a single link
 async function getSingleLink(id) {
   db = await connection();
   const editId = { _id: new ObjectId(id) };
