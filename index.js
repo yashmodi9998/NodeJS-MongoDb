@@ -81,23 +81,10 @@ app.post("/admin/menu/add/submit", async (request, response) => {
 });
 
 //ADMIN update form process
-// app.post("/admin/menu/update/submit", async (request, response) => {
-//   let idFilter = { _id: new ObjectId(request.body.linkId) };
-//   let link = {
-//     weight: request.body.weight,
-//     path: request.body.path,
-//     name: request.body.name,
-//   };
-//   await editLink(idFilter, link);
-
-//   response.redirect("/admin/menu"); //redirect back to admin page
-//   // console.log(idFilter);
-// });
-
 app.post("/admin/menu/update/submit", async (request, response) => {
   try {
-    const idFilter = { _id: new ObjectId(request.body.linkId) };
-    const link = {
+    let idFilter = { _id: new ObjectId(request.body.linkId) };
+    let link = {
       weight: request.body.weight,
       path: request.body.path,
       name: request.body.name,
@@ -149,7 +136,7 @@ async function updateLink(idFilter, updatedValues) {
     throw error;
   }
 }
-
+// Function to delete a link
 async function deleteLink(id) {
   db = await connection();
   const deleteId = { _id: new ObjectId(id) };
@@ -158,7 +145,7 @@ async function deleteLink(id) {
     console.log("delete successful");
   }
 }
-
+// Function to get a link
 async function getSingleLink(id) {
   db = await connection();
   const editId = { _id: new ObjectId(id) };
